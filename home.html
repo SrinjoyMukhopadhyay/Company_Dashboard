@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cogenerate Dashboard</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <img class="logo" src="{{ url_for('static', filename='cogen.jpg') }}" alt="Company Logo">
+    <div class="container">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form" method="post" action="/choose_project">
+                        <label for="project_name">Project Name</label><br>
+                        <select name="project_name" id="project_name">
+                            <option value="" disabled selected>Select one</option>
+                            <option value="minority">Minority</option>
+                            <option value="hmc">HMC</option>
+                            <input type="submit" class="btn btn-primary btn-block btn-lg" value="submit">
+                        </select>
+                    </form>
+                    </div>
+
+            </div>
+
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMC DashBoard</title>
+    <style>
+        body {
+            background-color: rgb(173, 230, 230);
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 80%; /* Adjusted max-width for better readability on desktop */
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center align the content within the container */
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            width: 100px;
+            height: auto;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img class="logo" src="{{ url_for('static', filename='cogen.jpg') }}" alt="Company Logo">
+        <h1>HMC Dashboard</h1>
+        <a href="/billing_hmc">View Billing</a>
+        <a href="/index_hmc">IP Authorization</a>
+    </div>
+</body>
+
+</html>

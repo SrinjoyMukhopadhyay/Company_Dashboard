@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Cost Breakdown</title>
+    <style>
+        body {
+            background-color: #1f1f1f; /* Dark background */
+            color: #ffffff; /* Light text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #2a2a2a; /* Dark container background */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow */
+        }
+        h1 {
+            color: #ffffff; /* Light text */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            color: #ffffff; /* Light text */
+        }
+        input[type=date] {
+            padding: 8px;
+            border: 1px solid #333333; /* Dark border */
+            border-radius: 4px;
+            margin-right: 10px;
+            background-color: #2a2a2a; /* Dark background */
+            color: #ffffff; /* Light text */
+        }
+        button[type=submit] {
+            background-color: #007bff; /* Blue */
+            color: #ffffff; /* Light text */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button[type=submit]:hover {
+            background-color: #0056b3; /* Darker blue */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #333333; /* Dark border */
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #2a2a2a; /* Dark background */
+            color: #ffffff; /* Light text */
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #333333; /* Darker background */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AWS Cost Breakdown</h1>
+        <form action="/billing_hmc" method="get">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required>
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+            <button type="submit">Submit</button>
+        </form>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Resource Category</th>
+                    <th>Amount</th>
+                    <th>Currency</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category, info in cost_breakdown.items() %}
+                <tr>
+                    <td>{{ category }}</td>
+                    <td>{{ info.amount }}</td>
+                    <td>{{ info.currency }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

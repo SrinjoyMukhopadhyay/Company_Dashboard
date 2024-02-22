@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorize IP Address</title>
+    <style>
+        body {
+            background-color: rgb(173, 230, 230);
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 100%; /* Adjusted to full width for mobile responsiveness */
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        button,
+        label {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .logo {
+            display: block; /* Ensure the logo is a block element */
+            margin: 0 auto 20px; /* Center the logo and add some bottom margin */
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <img class="logo" src="{{ url_for('static', filename='cogen.jpg') }}" alt="Company Logo">
+    <div class="container">
+        <h1>Authorize IP Address</h1>
+        <form method="post">
+            <label for="server">Server:</label>
+            <select name="server" id="server">
+                <option value="" disabled selected>Select one</option>
+                <option value="appserver">Windows Application Server</option>
+                <option value="windowssap">Windows SAP Server</option>
+                
+            </select>
+            
+            <label for="ip_address">IP Address:</label>
+            <input type="text" id="ip_address" name="ip_address" required>
+            
+            <label for="protocol">Protocol:</label>
+            <select name="protocol" id="protocol">
+                <option value="" disabled selected>Select one</option>
+                <option value="rdp">RDP</option>
+                <option value="ssh">SSH</option>
+            </select>
+            
+            <label for="action">Action:</label>
+            <select name="action" id="action">
+                <option value="" disabled selected>Select one</option>
+                <option value="add">Add</option>
+                <option value="remove">Remove</option>
+            </select>
+            
+            <button type="submit">Submit</button>
+        </form>
+	<a href="/view_hmc_appserver">View Existing Inbound Rules for Windows App Server</a></p>
+    <a href="/view_hmc_windowssap">View Existing Inbound Rules for Windows SAP</a></p>
+    
+	
+        <h2>Existing Allowed IP Port Pairs:</h2>
+        <ul>
+            {% for ip, protocol, from_port, to_port in existing_ip_port_pairs %}
+                <li>{{ ip }} - Protocol: {{ protocol }}, From Port: {{ from_port }}, To Port: {{ to_port }}</li>
+            {% endfor %}
+        </ul>
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
